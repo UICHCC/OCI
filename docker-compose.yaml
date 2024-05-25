@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+    alist:
+        image: "bayes-cluster/uicvpn:0.2"
+        container_name: uicvpn-1
+        ports:
+          - '7891:9052'
+        environment:
+            - URL=<URL>
+            - NAME=<USERNAME>
+            - PASSWD=<PASSWORD>
+            - GROUP=<GROUP>
+        restart: always
