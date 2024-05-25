@@ -1,8 +1,8 @@
 version: '3.3'
 services:
     alist:
-        image: "bayes-cluster/uicvpn:0.2"
-        container_name: uicvpn-1
+        image: "uichcc/oci:0.1"
+        container_name: uichcc-oci
         ports:
           - '7891:9052'
         environment:
