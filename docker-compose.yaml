@@ -1,13 +1,13 @@
-version: '3.3'
 services:
-    alist:
-        image: "uichcc/oci:0.1"
-        container_name: uichcc-oci
-        ports:
-          - '7891:9052'
-        environment:
-            - URL=<URL>
-            - NAME=<USERNAME>
-            - PASSWD=<PASSWORD>
-            - GROUP=<GROUP>
-        restart: always
+  oci:
+    build: .
+    container_name: uichcc-oci
+    ports:
+      - "7891:9052"
+    environment:
+      - URL=<URL>
+      - NAME=<USERNAME>
+      - PASSWD=<PASSWORD>
+      - GROUP=<GROUP>
+      - TOTPTOKEN=<TOTPTOKEN>
+    restart: always

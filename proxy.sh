@@ -1,12 +1,25 @@
 #!/bin/bash
 
+if [[ -z "${TOTPTOKEN}" ]]; then
+    echo "TOTP TOKEN is missing"
+else
+    export TOTP=`oathtool --base32 -s 60s -d 6 --totp ${TOTPTOKEN}`
+fi
+
 export cert="$(\
     yes no | \
     openconnect "$URL" 2>&1 >/dev/null | \
     grep 'servercert' | \
     cut -d ' ' -f 6)" \
-    && \
-    echo "$PASSWD" | \
+
+
+if [ "$GROUP" = "special" ]; then
+    authstring="${PASSWD}"
+else
+    authstring="${PASSWD}\n${TOTP}"
+fi
+
+echo -e "${authstring}" | \
     openconnect \
     --servercert $cert \
     --script-tun \
