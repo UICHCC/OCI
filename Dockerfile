@@ -6,10 +6,9 @@ LABEL org.opencontainers.image.authors="me@cklau.cc"
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
+    && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
     oathtool openconnect ocproxy \
-    && apt-get update \
-    && apt-get upgrade -y \
     && apt-get remove -fy \
     && apt-get autoclean -y \
     && apt-get autoremove -y \
